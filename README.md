@@ -1,10 +1,10 @@
 # Vifm.lua
 
-A part of (fm-nvim)[https://github.com/is0n/fm-nvim].
+A part of [fm-nvim](https://github.com/is0n/fm-nvim).
 
 ## Installation
 
-+ (packer.nvim)[https://github.com/wbthomason/packer.nvim]
++ [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
 ```lua
 use {'zpyg/vifm.lua'}

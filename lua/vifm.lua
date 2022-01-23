@@ -53,8 +53,7 @@ end
 
 local function on_exit()
     M.closeCmd()
-    checkFile("/tmp/fm-nvim")
-    checkFile(vim.fn.getenv("HOME") .. "/.cache/fff/opened_file")
+    checkFile("/tmp/vifm-nvim")
     for _, func in ipairs(config.on_close) do
         func()
     end
@@ -66,28 +65,28 @@ local function postCreation(suffix)
         M.buf,
         "t",
         config.mappings.edit,
-        '<C-\\><C-n>:lua require("fm-nvim").setMethod("edit")<CR>i' .. suffix,
+        '<C-\\><C-n>:lua require("vifm").setMethod("edit")<CR>i' .. suffix,
         {silent = true}
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.tabedit,
-        '<C-\\><C-n>:lua require("fm-nvim").setMethod("tabedit")<CR>i' .. suffix,
+        '<C-\\><C-n>:lua require("vifm").setMethod("tabedit")<CR>i' .. suffix,
         {silent = true}
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.horz_split,
-        '<C-\\><C-n>:lua require("fm-nvim").setMethod("split | edit")<CR>i' .. suffix,
+        '<C-\\><C-n>:lua require("vifm").setMethod("split | edit")<CR>i' .. suffix,
         {silent = true}
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.vert_split,
-        '<C-\\><C-n>:lua require("fm-nvim").setMethod("vsplit | edit")<CR>i' .. suffix,
+        '<C-\\><C-n>:lua require("vifm").setMethod("vsplit | edit")<CR>i' .. suffix,
         {silent = true}
     )
     vim.api.nvim_buf_set_keymap(M.buf, "t", "<ESC>", config.mappings.ESC, {silent = true})
@@ -139,9 +138,9 @@ end
 function M.Vifm(dir)
     dir = dir or "."
     if config.ui.default == "float" then
-        createWin(config.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir, "l")
+        createWin(config.vifm_cmd .. " --choose-files /tmp/vifm-nvim " .. dir, "l")
     elseif config.ui.default == "split" then
-        createSplit(config.vifm_cmd .. " --choose-files /tmp/fm-nvim " .. dir, "l")
+        createSplit(config.vifm_cmd .. " --choose-files /tmp/vifm-nvim " .. dir, "l")
     end
 end
 

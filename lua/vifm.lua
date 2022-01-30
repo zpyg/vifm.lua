@@ -11,12 +11,12 @@ local config = {
             height = 0.8,
             width = 0.8,
             x = 0.5,
-            y = 0.5
+            y = 0.5,
         },
         split = {
             direction = "topleft",
-            size = 24
-        }
+            size = 24,
+        },
     },
     edit_cmd = "edit",
     vifm_cmd = "vifm",
@@ -27,8 +27,8 @@ local config = {
         horz_split = "<C-h>",
         tabedit = "<C-t>",
         edit = "<C-e>",
-        ESC = "<ESC>"
-    }
+        ESC = "<ESC>",
+    },
 }
 
 local method = config.edit_cmd
@@ -66,30 +66,30 @@ local function postCreation(suffix)
         "t",
         config.mappings.edit,
         '<C-\\><C-n>:lua require("vifm").setMethod("edit")<CR>i' .. suffix,
-        {silent = true}
+        { silent = true }
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.tabedit,
         '<C-\\><C-n>:lua require("vifm").setMethod("tabedit")<CR>i' .. suffix,
-        {silent = true}
+        { silent = true }
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.horz_split,
         '<C-\\><C-n>:lua require("vifm").setMethod("split | edit")<CR>i' .. suffix,
-        {silent = true}
+        { silent = true }
     )
     vim.api.nvim_buf_set_keymap(
         M.buf,
         "t",
         config.mappings.vert_split,
         '<C-\\><C-n>:lua require("vifm").setMethod("vsplit | edit")<CR>i' .. suffix,
-        {silent = true}
+        { silent = true }
     )
-    vim.api.nvim_buf_set_keymap(M.buf, "t", "<ESC>", config.mappings.ESC, {silent = true})
+    vim.api.nvim_buf_set_keymap(M.buf, "t", "<ESC>", config.mappings.ESC, { silent = true })
     for _, func in ipairs(config.on_open) do
         func()
     end
@@ -108,11 +108,11 @@ local function createWin(cmd, suffix)
         width = win_width,
         height = win_height,
         row = row,
-        col = col
+        col = col,
     }
     M.win = vim.api.nvim_open_win(M.buf, true, opts)
     postCreation(suffix)
-    vim.fn.termopen(cmd, {on_exit = on_exit})
+    vim.fn.termopen(cmd, { on_exit = on_exit })
     vim.api.nvim_command("startinsert")
     vim.api.nvim_win_set_option(
         M.win,
@@ -128,7 +128,7 @@ end
 local function createSplit(cmd, suffix)
     M.buf = vim.cmd(config.ui.split.direction .. " " .. config.ui.split.size .. "vnew")
     postCreation(suffix)
-    vim.fn.termopen(cmd, {on_exit = on_exit})
+    vim.fn.termopen(cmd, { on_exit = on_exit })
     vim.api.nvim_command("startinsert")
     M.closeCmd = function()
         vim.cmd("bdelete!")

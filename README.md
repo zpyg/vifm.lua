@@ -4,7 +4,7 @@ A part of [fm-nvim](https://github.com/is0n/fm-nvim).
 
 ## Installation
 
-+ [packer.nvim](https://github.com/wbthomason/packer.nvim)
+- [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
 ```lua
 use {'zpyg/vifm.lua'}
@@ -13,71 +13,72 @@ use {'zpyg/vifm.lua'}
 ## Configuration
 
 ```lua
-require('fm-nvim').setup{
-	-- (Vim) Command used to open files
-	edit_cmd = "edit",
+require("fm-nvim").setup({
+    -- (Vim) Command used to open files
+    edit_cmd = "edit",
 
-	-- See `Q&A` for more info
-	on_close = {},
-	on_open = {},
+    -- See `Q&A` for more info
+    on_close = {},
+    on_open = {},
 
-	-- UI Options
-	ui = {
-		-- Default UI (can be "split" or "float")
-		default = "float",
+    -- UI Options
+    ui = {
+        -- Default UI (can be "split" or "float")
+        default = "float",
 
-		float = {
-			-- Floating window border (see ':h nvim_open_win')
-			border    = "none",
+        float = {
+            -- Floating window border (see ':h nvim_open_win')
+            border = "none",
 
-			-- Highlight group for floating window/border (see ':h winhl')
-			float_hl  = "Normal",
-			border_hl = "FloatBorder",
+            -- Highlight group for floating window/border (see ':h winhl')
+            float_hl = "Normal",
+            border_hl = "FloatBorder",
 
-			-- Floating Window Transparency (see ':h winblend')
-			blend     = 0,
+            -- Floating Window Transparency (see ':h winblend')
+            blend = 0,
 
-			-- Num from 0 - 1 for measurements
-			height    = 0.8,
-			width     = 0.8,
+            -- Num from 0 - 1 for measurements
+            height = 0.8,
+            width = 0.8,
 
-			-- X and Y Axis of Window
-			x         = 0.5,
-			y         = 0.5
-		},
+            -- X and Y Axis of Window
+            x = 0.5,
+            y = 0.5,
+        },
 
-		split = {
-			-- Direction of split
-			direction = "topleft",
+        split = {
+            -- Direction of split
+            direction = "topleft",
 
-			-- Size of split
-			size      = 24
-		}
-	},
+            -- Size of split
+            size = 24,
+        },
+    },
 
     -- you can also use 'vifmrun'
     vifm_cmd = "vifm",
 
-	-- Mappings used with the plugin
-	mappings = {
-		vert_split = "<C-v>",
-		horz_split = "<C-h>",
-		tabedit    = "<C-t>",
-		edit       = "<C-e>",
-		ESC        = "<ESC>"
-	}
-}
+    -- Mappings used with the plugin
+    mappings = {
+        vert_split = "<C-v>",
+        horz_split = "<C-h>",
+        tabedit = "<C-t>",
+        edit = "<C-e>",
+        ESC = "<ESC>",
+    },
+})
 ```
 
 ## Usage
 
-+ open in current dir
+- open in current directory
 
 ```vim
 :Vifm
 ```
 
-+ open in the specified dir
+- open in the specified directory
+
 ```vim
 :Vifm <dir>
 ```
@@ -99,15 +100,15 @@ A: Yes you can! Use the following code as a guide...
 
 ```lua
 local function yourFunction()
-	-- Your code goes here
+    -- Your code goes here
 end
 
 require('fm-nvim').setup{
-	-- Runs yourFunction() upon exiting the floating window (can only be a function)
-	on_close = { yourFunction },
+    -- Runs yourFunction() upon exiting the floating window (can only be a function)
+    on_close = { yourFunction },
 
-	-- Runs yourFunction() upon opening the floating window (can only be a function)
-	on_open = { yourFunction }
+    -- Runs yourFunction() upon opening the floating window (can only be a function)
+    on_open = { yourFunction }
 }
 ```
 
@@ -117,10 +118,10 @@ A: You can do this by mapping `<ESC>` to whatever closes your file manager (note
 
 ```lua
 require('fm-nvim').setup{
-	mappings = {
-		-- Example for Vifm
-		ESC        = ":q<CR>"
-	}
+    mappings = {
+        -- Example for Vifm
+        ESC        = ":q<CR>"
+    }
 }
 ```
 
